@@ -274,23 +274,20 @@
   color: var(--copper-light);
   opacity: 0;
   pointer-events: none;
-  transform: translateY(10px) rotate(45deg);
+  transform: translateY(10px);
   transition: opacity 0.3s ease, transform 0.35s ease, background 0.3s ease, color 0.3s ease;
 }
 
 .back-to-top.visible {
   opacity: 1;
   pointer-events: auto;
-  transform: translateY(0) rotate(45deg);
-}
-
-.back-to-top svg {
-  transform: rotate(-45deg);
+  transform: translateY(0);
 }
 
 .back-to-top:hover {
   background: var(--copper);
   color: var(--paper);
+  transform: translateY(-2px);
 }
 
 /* Keyframes */

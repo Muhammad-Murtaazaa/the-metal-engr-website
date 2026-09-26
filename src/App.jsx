@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import {
   Activity,
   ArrowDown,
+  ArrowUp,
   ArrowUpRight,
   Factory,
   Gauge,
@@ -397,7 +398,7 @@ function BackToTop() {
         }
       }}
     >
-      <ArrowUpRight size={17} strokeWidth={1.5} />
+      <ArrowUp size={18} strokeWidth={1.6} />
     </a>
   );
 }
