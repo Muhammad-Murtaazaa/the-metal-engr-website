@@ -1,0 +1,42 @@
+.skip-link {
+  position: fixed;
+  top: 12px;
+  left: 12px;
+  z-index: 100;
+  padding: 10px 14px;
+  background: var(--copper);
+  color: var(--paper);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transform: translateY(-150%);
+  transition: transform 0.2s ease;
+  border: 1px solid var(--copper-light);
+}
+
+.skip-link:focus {
+  transform: none;
+}
+
+.desktop-nav a:focus-visible,
+.mobile-menu a:focus-visible,
+.arrow-link:focus-visible,
+.back-link:focus-visible,
+.btn:focus-visible,
+.brand:focus-visible,
+.scroll-cue:focus-visible,
+.section-rail a:focus-visible,
+.back-to-top:focus-visible,
+.service-card:focus-visible {
+  outline: 2px solid var(--copper-light);
+  outline-offset: 4px;
+}
+
+.menu-toggle:focus-visible {
+  outline: 2px solid var(--copper-light);
+  outline-offset: 3px;
+}
+
+#main-content:focus {
+  outline: none;
+}

@@ -1,0 +1,419 @@
+/* Subtle Hero Motion */
+.hero::before {
+  content: '';
+  position: absolute;
+  z-index: 1;
+  top: 88px;
+  bottom: 0;
+  left: 5vw;
+  width: 1px;
+  background: linear-gradient(180deg, transparent, var(--copper), transparent);
+  opacity: 0.42;
+  animation: hero-line 5s ease-in-out infinite;
+}
+
+.hero-shade {
+  animation: hero-breathe 9s ease-in-out infinite alternate;
+}
+
+.hero .kicker::before {
+  animation: kicker-pulse 2.5s ease-in-out infinite;
+}
+
+.scroll-cue {
+  animation: scroll-float 2.2s ease-in-out infinite;
+}
+
+.scroll-cue svg {
+  vertical-align: middle;
+  margin-left: 8px;
+  color: var(--copper-light);
+}
+
+/* Nav Active Indicator */
+.desktop-nav a.active {
+  opacity: 1;
+  color: var(--copper-light);
+}
+
+.desktop-nav a.active::after {
+  content: '';
+  display: block;
+  height: 1px;
+  background: var(--copper-light);
+  margin-top: 5px;
+  transform-origin: left;
+  animation: nav-in 0.35s ease both;
+}
+
+.mobile-menu a.active {
+  color: var(--copper-light);
+}
+
+/* Section Rail */
+.section-rail {
+  position: fixed;
+  z-index: 12;
+  right: 20px;
+  top: 50%;
+  display: grid;
+  gap: 15px;
+  transform: translateY(-50%);
+}
+
+.section-rail a {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  justify-content: flex-end;
+  color: var(--muted);
+  font-size: 9px;
+  letter-spacing: 1px;
+  transition: color 0.25s ease;
+}
+
+.section-rail a span {
+  opacity: 0;
+  transform: translateX(5px);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+  white-space: nowrap;
+}
+
+.section-rail a i {
+  display: block;
+  width: 7px;
+  height: 7px;
+  border: 1px solid currentColor;
+  border-radius: 50%;
+  transition: background 0.25s ease, transform 0.25s ease;
+}
+
+.section-rail a:hover span,
+.section-rail a.active span {
+  opacity: 1;
+  transform: none;
+}
+
+.section-rail a.active {
+  color: var(--copper-light);
+}
+
+.section-rail a.active i {
+  background: currentColor;
+  transform: scale(1.25);
+}
+
+/* Signal Strip */
+.signal-strip {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  background: #101111;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  padding: 24px 8vw;
+}
+
+.signal-item {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  border-right: 1px solid var(--line);
+  padding-left: 24px;
+  color: var(--paper);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1.1px;
+}
+
+.signal-item:first-child {
+  padding-left: 0;
+}
+
+.signal-item:last-child {
+  border-right: 0;
+}
+
+.signal-icon {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border: 1px solid var(--copper);
+  border-radius: 50%;
+  color: var(--copper-light);
+  flex-shrink: 0;
+  animation: signal-pulse 3s ease-in-out infinite;
+}
+
+.signal-item small {
+  display: block;
+  color: var(--copper);
+  font: 15px var(--serif);
+  line-height: 1;
+}
+
+.signal-item span:last-child {
+  display: grid;
+  gap: 2px;
+}
+
+@keyframes signal-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(216, 138, 94, 0); }
+  50% { box-shadow: 0 0 0 5px rgba(216, 138, 94, 0.08); }
+}
+
+/* Route Reveal Stagger */
+.route-transition [data-reveal]:nth-child(2) { transition-delay: 0.08s; }
+.route-transition [data-reveal]:nth-child(3) { transition-delay: 0.16s; }
+
+.route-transition .service-card:nth-child(2) { transition-delay: 0.06s; }
+.route-transition .service-card:nth-child(3) { transition-delay: 0.12s; }
+.route-transition .service-card:nth-child(4) { transition-delay: 0.18s; }
+.route-transition .service-card:nth-child(5) { transition-delay: 0.24s; }
+.route-transition .service-card:nth-child(6) { transition-delay: 0.30s; }
+
+/* Service Card Interactive Hover */
+.service-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.service-card::after {
+  content: '';
+  position: absolute;
+  inset: auto 0 0;
+  height: 2px;
+  background: var(--copper-light);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.45s ease;
+}
+
+.service-card:hover::after {
+  transform: scaleX(1);
+}
+
+.service-icon {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  color: var(--copper-light);
+  transition: transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1), background 0.3s ease;
+  flex-shrink: 0;
+}
+
+.service-card:hover .service-icon {
+  transform: rotate(-12deg) scale(1.08);
+  background: rgba(183, 101, 60, 0.12);
+}
+
+.card-arrow {
+  transition: transform 0.3s ease;
+}
+
+.service-card:hover .card-arrow {
+  transform: translate(4px, -4px);
+}
+
+.btn svg, .arrow-link svg {
+  transition: transform 0.3s ease;
+}
+
+.btn:hover svg, .arrow-link:hover svg {
+  transform: translate(3px, -3px);
+}
+
+/* Process Section List Dots */
+.process-list div {
+  grid-template-columns: 50px 32px 1fr;
+  gap: 12px;
+}
+
+.process-dot {
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  border: 1px solid var(--copper);
+  border-radius: 50%;
+  color: var(--copper-light);
+  transition: background 0.3s ease, transform 0.3s ease;
+  flex-shrink: 0;
+}
+
+.process-list div:hover .process-dot {
+  background: var(--copper);
+  color: var(--paper);
+  transform: rotate(12deg);
+}
+
+/* Form & Inputs Focus */
+.field input:focus,
+.field textarea:focus {
+  border-color: var(--copper);
+  box-shadow: 0 1px 0 var(--copper);
+}
+
+/* Back To Top Button */
+.back-to-top {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  z-index: 15;
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--line);
+  background: rgba(23, 25, 26, 0.88);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  color: var(--copper-light);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(10px) rotate(45deg);
+  transition: opacity 0.3s ease, transform 0.35s ease, background 0.3s ease, color 0.3s ease;
+}
+
+.back-to-top.visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0) rotate(45deg);
+}
+
+.back-to-top svg {
+  transform: rotate(-45deg);
+}
+
+.back-to-top:hover {
+  background: var(--copper);
+  color: var(--paper);
+}
+
+/* Keyframes */
+@keyframes hero-line {
+  0%, 100% { transform: scaleY(0.35); opacity: 0.15; }
+  50% { transform: scaleY(1); opacity: 0.65; }
+}
+
+@keyframes hero-breathe {
+  from { opacity: 0.88; }
+  to { opacity: 1; }
+}
+
+@keyframes kicker-pulse {
+  0%, 100% { transform: scaleX(1); transform-origin: left; }
+  50% { transform: scaleX(1.35); transform-origin: left; }
+}
+
+@keyframes scroll-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(5px); }
+}
+
+@keyframes nav-in {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+
+/* Responsive Media Queries */
+@media (max-width: 1100px) {
+  .section-rail {
+    display: none;
+  }
+}
+
+@media (max-width: 900px) {
+  .hero::before {
+    top: 72px;
+    left: 6vw;
+  }
+
+  .signal-strip {
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    padding: 0 6vw;
+  }
+
+  .signal-item {
+    padding: 16px 0;
+    border-right: 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .signal-item:nth-child(odd) {
+    border-right: 1px solid var(--line);
+    padding-right: 14px;
+    padding-left: 0;
+  }
+
+  .signal-item:nth-child(even) {
+    padding-left: 14px;
+  }
+
+  .signal-item:nth-last-child(-n+2) {
+    border-bottom: 0;
+  }
+
+  .process-list div {
+    grid-template-columns: 40px 28px 1fr;
+    gap: 10px;
+  }
+
+  .service-icon {
+    width: 44px;
+    height: 44px;
+  }
+}
+
+/* Small Screens (<= 540px) */
+@media (max-width: 540px) {
+  .hero::before {
+    top: 66px;
+    left: 5vw;
+  }
+
+  .signal-strip {
+    grid-template-columns: 1fr;
+    padding: 0 5vw;
+  }
+
+  .signal-item {
+    border-right: 0 !important;
+    border-bottom: 1px solid var(--line) !important;
+    padding: 14px 0 !important;
+  }
+
+  .signal-item:last-child {
+    border-bottom: 0 !important;
+  }
+
+  .signal-icon {
+    width: 32px;
+    height: 32px;
+  }
+
+  .process-list div {
+    grid-template-columns: 32px 24px 1fr;
+    gap: 8px;
+  }
+
+  .back-to-top {
+    right: 16px;
+    bottom: 16px;
+    width: 38px;
+    height: 38px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}
