@@ -7,7 +7,6 @@ import {
   Factory,
   Gauge,
   HardHat,
-  Headset,
   Layers3,
   Mail,
   MapPin,
@@ -25,8 +24,8 @@ const routes = {
   fabrication: {
     eyebrow: '04 / Fabrication',
     title: <>Made to your<br />measure.</>,
-    image: 'img-10.jpg',
-    imageAlt: 'Fabricated metalwork in an industrial yard',
+    image: 'fabrication-work.jpg',
+    imageAlt: 'Fabricated metalwork and site engineering in an industrial plant',
     subhead: 'The practical advantage',
     statement: <>One brief.<br />Fewer gaps.</>,
     copy: 'Keep design intent, fabrication, and site realities connected from the beginning.',
@@ -34,8 +33,8 @@ const routes = {
   conveyors: {
     eyebrow: '05 / Conveyors',
     title: <>Movement,<br />made simple.</>,
-    image: 'img-20.jpg',
-    imageAlt: 'Industrial conveyor system',
+    image: 'conveyor-systems.jpg',
+    imageAlt: 'Automated industrial conveyor system in factory',
     subhead: 'Built around flow',
     statement: <>Less handling.<br />More control.</>,
     copy: 'From a single conveyor section to a connected production line, we focus on the journey your product needs to take.',
@@ -43,8 +42,8 @@ const routes = {
   structural: {
     eyebrow: '06 / Structural steel',
     title: <>Strength that<br />makes space.</>,
-    image: 'img-30.jpg',
-    imageAlt: 'Industrial structural racking',
+    image: 'structural-steel.jpg',
+    imageAlt: 'Heavy industrial structural steel framework and mezzanine platform',
     subhead: 'Useful infrastructure',
     statement: <>Make room<br />to grow.</>,
     copy: 'Smart structural work gives your people and equipment the room to perform.',
@@ -52,8 +51,8 @@ const routes = {
   installation: {
     eyebrow: '07 / Site installation',
     title: <>Ready for the<br />real world.</>,
-    image: 'img-40.jpg',
-    imageAlt: 'Industrial equipment installation',
+    image: 'site-installation.jpg',
+    imageAlt: 'Turnkey industrial equipment and piping installation',
     subhead: 'On-site execution',
     statement: <>Built around<br />your operation.</>,
     copy: 'Measured installation and modifications carried out with care around active production environments.',
@@ -61,26 +60,17 @@ const routes = {
   maintenance: {
     eyebrow: '08 / Maintenance',
     title: <>Keep the line<br />alive.</>,
-    image: 'img-48.jpg',
-    imageAlt: 'Industrial equipment maintenance and repair',
+    image: 'equipment-maintenance.jpg',
+    imageAlt: 'Industrial equipment maintenance, gearbox servicing, and mechanical repair',
     subhead: 'Continuous uptime',
     statement: <>Prevent downtime.<br />Extend life.</>,
     copy: 'Scheduled preventative servicing and responsive repairs that extend equipment life and protect production schedules.',
   },
-  support: {
-    eyebrow: '09 / Technical support',
-    title: <>Bring us the<br />problem.</>,
-    image: 'img-2.jpg',
-    imageAlt: 'Metal components prepared for technical support',
-    subhead: 'Practical answers',
-    statement: <>Make the next<br />move clear.</>,
-    copy: 'From a technical question to a full site review, we help turn uncertainty into a useful next step.',
-  },
   industries: {
     eyebrow: '10 / Industries',
     title: <>Where industry<br />gets moving.</>,
-    image: 'img-40.jpg',
-    imageAlt: 'Industrial equipment and structure',
+    image: 'site-installation.jpg',
+    imageAlt: 'Industrial equipment and manufacturing facility',
     subhead: 'Different site. Same standard.',
     statement: <>Understand<br />the job.</>,
     copy: 'The right solution starts with knowing what success looks like for the people running the operation.',
@@ -95,7 +85,6 @@ const services = [
   ['03', 'Structural steel', 'Strong frameworks, platforms, racks, and access solutions.', 'structural'],
   ['04', 'Site installation', 'Measured installation and modifications around live operations.', 'installation'],
   ['05', 'Maintenance', 'Repairs and upgrades that extend the life of your equipment.', 'maintenance'],
-  ['06', 'Technical support', 'Bring us the problem. We will help you find the practical answer.', 'support'],
 ];
 
 const serviceIcons = {
@@ -104,7 +93,6 @@ const serviceIcons = {
   structural: Factory,
   installation: HardHat,
   maintenance: Wrench,
-  support: Headset,
 };
 
 const logos = [
@@ -131,9 +119,6 @@ function getPageList(eyebrow = '') {
   if (eyebrow.includes('Maintenance')) {
     return ['Preventative inspections', 'Component replacement', 'Emergency breakdown repairs', 'Refurbishment & upgrades'];
   }
-  if (eyebrow.includes('support')) {
-    return ['On-site engineering reviews', 'CAD drafting & design feasibility', 'Structural load assessments', 'Custom modification advice'];
-  }
   if (eyebrow.includes('Quality')) {
     return ['Material awareness', 'Dimensional care', 'Clean execution', 'Site respect'];
   }
@@ -159,7 +144,7 @@ function useRoute() {
   }, []);
 
   useEffect(() => {
-    const serviceRoutes = ['fabrication', 'conveyors', 'structural', 'installation', 'maintenance', 'support'];
+    const serviceRoutes = ['fabrication', 'conveyors', 'structural', 'installation', 'maintenance'];
     if (serviceRoutes.includes(route)) {
       window.scrollTo({ top: 0, behavior: 'instant' });
     } else if (route === 'home' || !route) {
@@ -255,8 +240,12 @@ function Button({ children, href = '#contact', outline = false }) {
 function Logo() {
   return (
     <a className="brand" href="#home" aria-label="Metal Engineering home">
-      <img src="/metal engineering logo.png" alt="Metal Engineering logo" width="44" height="44" />
-      <span>
+      <img
+        src="/metal engineering logo.png"
+        alt="Metal Engineering logo"
+        className="brand-logo"
+      />
+      <span className="brand-text">
         METAL
         <br />
         <b>ENGINEERING</b>
@@ -507,7 +496,7 @@ function Home() {
       <QualitySection />
       <ProcessSection />
       <Contact />
-      <LogoStrip />
+      <ClientCarouselSection />
     </>
   );
 }
@@ -542,8 +531,8 @@ function FieldScene() {
     <section className="field-scene" aria-label="Engineering in the field">
       <div className="scene-image scene-main" data-reveal>
         <img
-          src="/img-36.jpg"
-          alt="Structural steel stairs and platforms installed on site"
+          src="/built-in-context.jpg"
+          alt="Structural steel stairs, walkways and platforms installed on site"
           loading="lazy"
         />
         <span className="scene-caption">01 / Built in context</span>
@@ -567,8 +556,8 @@ function FieldScene() {
       </div>
       <div className="scene-image scene-detail" data-reveal>
         <img
-          src="/img-44.jpg"
-          alt="Engineer working on industrial water equipment"
+          src="/hands-on-engineering.jpg"
+          alt="Mechanical engineer performing precision hands-on equipment installation"
           loading="lazy"
         />
         <span className="scene-caption">02 / Hands on</span>
@@ -615,14 +604,30 @@ function Capabilities() {
   );
 }
 
-function LogoStrip() {
+function ClientCarouselSection() {
+  // Duplicate logos 3 times for a completely seamless, gap-free infinite scroll
+  const marqueeLogos = [...logos, ...logos, ...logos];
+
   return (
-    <section className="logo-strip">
-      <p>Trusted by teams at</p>
-      <div className="client-logos">
-        {logos.map(([src, alt]) => (
-          <img key={alt} src={`/${src}`} alt={alt} loading="lazy" />
-        ))}
+    <section className="client-section" id="clients" aria-label="Trusted by industry leaders">
+      <div className="client-section-inner">
+        <div className="client-section-head" data-reveal>
+          <div className="kicker kicker-dark">Trusted by teams at</div>
+          <h2>Industry leaders who rely on our engineering.</h2>
+          <p>
+            From multinational corporations to national infrastructure leaders, we build and maintain the systems keeping Pakistan's key industries moving.
+          </p>
+        </div>
+
+        <div className="marquee-container" aria-label="Client logos moving carousel">
+          <div className="marquee-track">
+            {marqueeLogos.map(([src, alt], index) => (
+              <div className="marquee-slide" key={`${alt}-${index}`}>
+                <img src={`/${src}`} alt={`${alt} logo`} loading="lazy" />
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
     </section>
   );
@@ -707,9 +712,9 @@ function Projects() {
       </div>
       <div className="project-grid">
         {[
-          ['img-49.jpg', 'Fabrication / site work'],
-          ['img-20.jpg', 'Conveyor systems'],
-          ['img-30.jpg', 'Structural steel'],
+          ['fabrication-work.jpg', 'Fabrication / site work'],
+          ['conveyor-systems.jpg', 'Conveyor systems'],
+          ['structural-steel.jpg', 'Structural steel'],
         ].map(([src, caption], index) => (
           <figure key={src} data-reveal className={index === 0 ? 'featured' : ''}>
             <img src={`/${src}`} alt={caption} loading="lazy" />
@@ -914,7 +919,6 @@ function App() {
     'structural',
     'installation',
     'maintenance',
-    'support',
   ].includes(route);
 
   return (

@@ -48,8 +48,8 @@ img, video {
 
 /* Header & Navigation */
 .site-header {
-  height: 88px;
-  padding: 0 5vw;
+  height: 94px;
+  padding: 0 clamp(16px, 5vw, 64px);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -58,40 +58,53 @@ img, video {
   top: 0;
   left: 0;
   right: 0;
-  z-index: 20;
-  background: linear-gradient(180deg, rgba(23, 25, 26, 0.96), rgba(23, 25, 26, 0.8));
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  transition: height 0.25s ease;
+  z-index: 50;
+  background: linear-gradient(180deg, rgba(23, 25, 26, 0.98), rgba(23, 25, 26, 0.88));
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: height 0.25s ease, padding 0.25s ease;
 }
 
 .brand {
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  gap: 10px;
+  gap: 14px;
   font-family: var(--serif);
-  font-size: 17px;
-  line-height: 0.95;
-  letter-spacing: 1px;
+  font-size: 21px;
+  line-height: 0.92;
+  letter-spacing: 1.2px;
+  flex-shrink: 0;
+  transition: transform 0.2s ease;
 }
 
+.brand:hover {
+  transform: translateY(-1px);
+}
+
+.brand-logo,
 .brand img {
-  width: 44px;
-  height: 44px;
+  width: 58px;
+  height: 58px;
   object-fit: contain;
   flex-shrink: 0;
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.25));
+}
+
+.brand-text {
+  display: inline-block;
 }
 
 .brand b {
   font-weight: 700;
   color: var(--copper-light);
+  letter-spacing: 1.4px;
 }
 
 .desktop-nav {
   display: flex;
   align-items: center;
-  gap: clamp(16px, 2vw, 30px);
-  font-size: 12px;
+  gap: clamp(12px, 1.8vw, 28px);
+  font-size: clamp(11px, 1vw, 12px);
   text-transform: uppercase;
   letter-spacing: 1.4px;
 }
@@ -300,9 +313,9 @@ h3 {
   position: absolute;
   z-index: 1;
   right: 5vw;
-  bottom: 8vh;
+  bottom: clamp(50px, 8vh, 80px);
   display: flex;
-  gap: 35px;
+  gap: clamp(20px, 3vw, 35px);
   color: #d2d0c9;
   font-size: 11px;
   text-transform: uppercase;
@@ -320,7 +333,7 @@ h3 {
 .scroll-cue {
   position: absolute;
   right: 5vw;
-  bottom: 31px;
+  bottom: 24px;
   z-index: 2;
   font-size: 10px;
   text-transform: uppercase;
@@ -334,9 +347,8 @@ h3 {
 /* Page & Section Structure */
 .page {
   min-height: calc(100vh - 1px);
-  padding: clamp(90px, 12vh, 150px) 8vw clamp(70px, 9vh, 110px);
+  padding: clamp(80px, 11vh, 140px) clamp(20px, 6vw, 8vw) clamp(60px, 9vh, 100px);
   position: relative;
-  overflow: hidden;
 }
 
 .intro {
@@ -447,13 +459,14 @@ h3 {
 /* Service Grid */
 .service-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(6, 1fr);
   gap: 1px;
   background: var(--line);
   border: 1px solid var(--line);
 }
 
 .service-card {
+  grid-column: span 2;
   background: var(--ink);
   padding: clamp(22px, 3vw, 32px);
   min-height: 250px;
@@ -462,6 +475,11 @@ h3 {
   justify-content: space-between;
   gap: 18px;
   transition: background 0.3s ease;
+}
+
+.service-card:nth-child(4),
+.service-card:nth-child(5) {
+  grid-column: span 3;
 }
 
 .service-card:hover {
@@ -593,45 +611,105 @@ h3 {
   max-width: 450px;
 }
 
-/* Client Logos */
-.logo-strip {
+/* Client Section & Moving Logo Carousel */
+.client-section {
   background: var(--paper);
   color: var(--ink);
-  padding: 48px 8vw;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 35px;
+  padding: clamp(65px, 9vh, 95px) 0 clamp(75px, 10vh, 105px);
+  border-top: 1px solid var(--dark-line);
+  position: relative;
+  overflow: hidden;
 }
 
-.logo-strip p {
-  text-transform: uppercase;
-  font-size: 10px;
-  letter-spacing: 1.5px;
-  max-width: 120px;
+.client-section-inner {
+  width: 100%;
+}
+
+.client-section-head {
+  padding: 0 clamp(20px, 6vw, 8vw);
+  margin-bottom: clamp(32px, 4.5vw, 48px);
+  max-width: 900px;
+}
+
+.kicker-dark {
+  color: var(--copper);
+}
+
+.kicker-dark::before {
+  background: var(--copper);
+}
+
+.client-section-head h2 {
+  font-size: clamp(30px, 4.8vw, 64px);
+  line-height: 0.96;
+  margin: 0 0 16px;
+  color: var(--ink);
+}
+
+.client-section-head p {
+  color: #555752;
+  font-size: clamp(14px, 1.8vw, 16px);
+  max-width: 620px;
   margin: 0;
-  color: #70706b;
+  line-height: 1.55;
 }
 
-.client-logos {
+.marquee-container {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  padding: 24px 0;
+  mask-image: linear-gradient(to right, transparent 0%, black 7%, black 93%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 7%, black 93%, transparent 100%);
+}
+
+.marquee-track {
   display: flex;
   align-items: center;
-  gap: clamp(24px, 4vw, 48px);
-  flex-wrap: wrap;
+  width: max-content;
+  gap: clamp(40px, 6vw, 75px);
+  animation: client-marquee-scroll 30s linear infinite;
+  will-change: transform;
 }
 
-.client-logos img {
-  max-width: 110px;
-  max-height: 46px;
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
+.marquee-slide {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: clamp(80px, 11vw, 110px);
+  min-width: clamp(170px, 19vw, 240px);
+  padding: 0 18px;
+}
+
+.marquee-slide img {
+  max-height: clamp(56px, 7.5vw, 80px);
+  max-width: clamp(155px, 18vw, 220px);
+  width: auto;
+  height: auto;
   object-fit: contain;
-  filter: grayscale(1);
-  opacity: 0.72;
-  transition: opacity 0.25s ease, filter 0.25s ease;
+  filter: grayscale(1) contrast(1.05);
+  opacity: 0.82;
+  transition: opacity 0.3s ease, filter 0.3s ease, transform 0.3s ease;
 }
 
-.client-logos img:hover {
-  filter: grayscale(0);
+.marquee-slide:hover img {
+  filter: grayscale(0) contrast(1);
   opacity: 1;
+  transform: scale(1.08);
+}
+
+@keyframes client-marquee-scroll {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-33.3333%, 0, 0);
+  }
 }
 
 /* Split Columns */
@@ -831,16 +909,9 @@ h3 {
 
 /* Tablet Landscape & Below (<= 1024px) */
 @media (max-width: 1024px) {
-  .service-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-/* Tablet Portrait & Mobile (<= 860px) */
-@media (max-width: 860px) {
   .site-header {
-    height: 72px;
-    padding: 0 6vw;
+    height: 80px;
+    padding: 0 clamp(16px, 4vw, 36px);
   }
 
   .desktop-nav {
@@ -852,16 +923,56 @@ h3 {
   }
 
   .mobile-menu {
-    top: 72px;
-    padding: 20px 6vw 40px;
+    top: 80px;
+    padding: 24px 6vw 40px;
+  }
+
+  .brand {
+    font-size: 19px;
+    gap: 12px;
+  }
+
+  .brand-logo,
+  .brand img {
+    width: 50px;
+    height: 50px;
+  }
+
+  .hero-meta {
+    display: none;
+  }
+
+  .service-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .service-card,
+  .service-card:nth-child(4),
+  .service-card:nth-child(5) {
+    grid-column: span 1;
+  }
+
+  .service-card:nth-child(5) {
+    grid-column: span 2;
+  }
+}
+
+/* Tablet Portrait & Mobile (<= 860px) */
+@media (max-width: 860px) {
+  .site-header {
+    height: 78px;
+    padding: 0 5vw;
+  }
+
+  .mobile-menu {
+    top: 78px;
   }
 
   .hero {
-    padding: 100px 6vw 50px;
+    padding: 105px 6vw 55px;
     min-height: 90svh;
   }
 
-  .hero-meta,
   .scroll-cue {
     display: none;
   }
@@ -872,7 +983,7 @@ h3 {
   }
 
   .page {
-    padding: 95px 6vw 65px;
+    padding: 85px 6vw 55px;
     min-height: auto;
   }
 
@@ -927,23 +1038,20 @@ h3 {
     gap: 14px;
   }
 
-  .logo-strip {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 22px;
-    padding: 38px 6vw;
+  .client-section {
+    padding: 55px 0 65px;
   }
 
-  .client-logos {
-    width: 100%;
-    justify-content: flex-start;
-    gap: 24px;
+  .marquee-track {
+    gap: 36px;
+    animation-duration: 25s;
   }
 
   .contact-form {
     border-left: 0;
     border-top: 1px solid var(--dark-line);
     padding: 32px 0 0;
+    width: 100%;
   }
 
   .footer-top {
@@ -963,7 +1071,10 @@ h3 {
     grid-template-columns: 1fr;
   }
 
-  .service-card {
+  .service-card,
+  .service-card:nth-child(4),
+  .service-card:nth-child(5) {
+    grid-column: span 1;
     min-height: auto;
     padding: 24px 20px;
   }
@@ -973,17 +1084,20 @@ h3 {
   }
 
   .stats {
-    gap: 12px;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 10px;
     margin-top: 28px;
     padding-top: 20px;
   }
 
   .stats strong {
-    font-size: clamp(30px, 8vw, 44px);
+    font-size: clamp(26px, 7vw, 40px);
   }
 
   .stats span {
     font-size: 9px;
+    letter-spacing: 0.8px;
+    word-break: break-word;
   }
 
   .footer-bottom {
@@ -996,22 +1110,23 @@ h3 {
 /* Small Mobile Screens (<= 480px) */
 @media (max-width: 480px) {
   .site-header {
-    height: 66px;
-    padding: 0 5vw;
+    height: 72px;
+    padding: 0 4.5vw;
   }
 
   .brand {
-    font-size: 15px;
-    gap: 8px;
+    font-size: 17px;
+    gap: 10px;
   }
 
+  .brand-logo,
   .brand img {
-    width: 36px;
-    height: 36px;
+    width: 44px;
+    height: 44px;
   }
 
   .mobile-menu {
-    top: 66px;
+    top: 72px;
     padding: 16px 5vw 36px;
   }
 
@@ -1021,7 +1136,7 @@ h3 {
   }
 
   .hero {
-    padding: 85px 5vw 40px;
+    padding: 90px 5vw 40px;
   }
 
   .hero-actions {
@@ -1036,23 +1151,25 @@ h3 {
   }
 
   .page {
-    padding: 78px 5vw 50px;
+    padding: 72px 5vw 46px;
   }
 
-  .client-logos {
-    gap: 18px;
+  .marquee-slide {
+    height: 68px;
+    min-width: 135px;
+    padding: 0 10px;
   }
 
-  .client-logos img {
-    max-width: 85px;
-    max-height: 36px;
+  .marquee-slide img {
+    max-height: 46px;
+    max-width: 125px;
   }
 }
 
-/* Extra Narrow Mobile (<= 340px) */
-@media (max-width: 340px) {
+/* Extra Narrow Mobile (<= 380px) */
+@media (max-width: 380px) {
   .stats {
     grid-template-columns: 1fr;
-    gap: 16px;
+    gap: 14px;
   }
 }

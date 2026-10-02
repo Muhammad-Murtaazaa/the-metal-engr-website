@@ -170,7 +170,6 @@
 .route-transition .service-card:nth-child(3) { transition-delay: 0.12s; }
 .route-transition .service-card:nth-child(4) { transition-delay: 0.18s; }
 .route-transition .service-card:nth-child(5) { transition-delay: 0.24s; }
-.route-transition .service-card:nth-child(6) { transition-delay: 0.30s; }
 
 /* Service Card Interactive Hover */
 .service-card {
@@ -317,16 +316,16 @@
 }
 
 /* Responsive Media Queries */
-@media (max-width: 1100px) {
+@media (max-width: 1200px) {
   .section-rail {
     display: none;
   }
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1080px) {
   .hero::before {
-    top: 72px;
-    left: 6vw;
+    top: 80px;
+    left: 5vw;
   }
 
   .signal-strip {
@@ -369,8 +368,8 @@
 /* Small Screens (<= 540px) */
 @media (max-width: 540px) {
   .hero::before {
-    top: 66px;
-    left: 5vw;
+    top: 72px;
+    left: 4.5vw;
   }
 
   .signal-strip {
