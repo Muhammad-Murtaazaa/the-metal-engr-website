@@ -24,7 +24,7 @@ const routes = {
   fabrication: {
     eyebrow: '04 / Fabrication',
     title: <>Made to your<br />measure.</>,
-    image: 'fabrication-work.jpg',
+    image: 'fabrication-work.webp',
     imageAlt: 'Fabricated metalwork and site engineering in an industrial plant',
     subhead: 'The practical advantage',
     statement: <>One brief.<br />Fewer gaps.</>,
@@ -33,7 +33,7 @@ const routes = {
   conveyors: {
     eyebrow: '05 / Conveyors',
     title: <>Movement,<br />made simple.</>,
-    image: 'conveyor-systems.jpg',
+    image: 'conveyor-systems.webp',
     imageAlt: 'Automated industrial conveyor system in factory',
     subhead: 'Built around flow',
     statement: <>Less handling.<br />More control.</>,
@@ -42,7 +42,7 @@ const routes = {
   structural: {
     eyebrow: '06 / Structural steel',
     title: <>Strength that<br />makes space.</>,
-    image: 'structural-steel.jpg',
+    image: 'structural-steel.webp',
     imageAlt: 'Heavy industrial structural steel framework and mezzanine platform',
     subhead: 'Useful infrastructure',
     statement: <>Make room<br />to grow.</>,
@@ -51,7 +51,7 @@ const routes = {
   installation: {
     eyebrow: '07 / Site installation',
     title: <>Ready for the<br />real world.</>,
-    image: 'site-installation.jpg',
+    image: 'site-installation.webp',
     imageAlt: 'Turnkey industrial equipment and piping installation',
     subhead: 'On-site execution',
     statement: <>Built around<br />your operation.</>,
@@ -60,7 +60,7 @@ const routes = {
   maintenance: {
     eyebrow: '08 / Maintenance',
     title: <>Keep the line<br />alive.</>,
-    image: 'equipment-maintenance.jpg',
+    image: 'equipment-maintenance.webp',
     imageAlt: 'Industrial equipment maintenance, gearbox servicing, and mechanical repair',
     subhead: 'Continuous uptime',
     statement: <>Prevent downtime.<br />Extend life.</>,
@@ -69,7 +69,7 @@ const routes = {
   industries: {
     eyebrow: '10 / Industries',
     title: <>Where industry<br />gets moving.</>,
-    image: 'site-installation.jpg',
+    image: 'site-installation.webp',
     imageAlt: 'Industrial equipment and manufacturing facility',
     subhead: 'Different site. Same standard.',
     statement: <>Understand<br />the job.</>,
@@ -531,7 +531,7 @@ function FieldScene() {
     <section className="field-scene" aria-label="Engineering in the field">
       <div className="scene-image scene-main" data-reveal>
         <img
-          src="/built-in-context.jpg"
+          src="/built-in-context.webp"
           alt="Structural steel stairs, walkways and platforms installed on site"
           loading="lazy"
         />
@@ -556,7 +556,7 @@ function FieldScene() {
       </div>
       <div className="scene-image scene-detail" data-reveal>
         <img
-          src="/hands-on-engineering.jpg"
+          src="/hands-on-engineering.webp"
           alt="Mechanical engineer performing precision hands-on equipment installation"
           loading="lazy"
         />
@@ -712,9 +712,9 @@ function Projects() {
       </div>
       <div className="project-grid">
         {[
-          ['fabrication-work.jpg', 'Fabrication / site work'],
-          ['conveyor-systems.jpg', 'Conveyor systems'],
-          ['structural-steel.jpg', 'Structural steel'],
+          ['fabrication-work.webp', 'Fabrication / site work'],
+          ['conveyor-systems.webp', 'Conveyor systems'],
+          ['structural-steel.webp', 'Structural steel'],
         ].map(([src, caption], index) => (
           <figure key={src} data-reveal className={index === 0 ? 'featured' : ''}>
             <img src={`/${src}`} alt={caption} loading="lazy" />
