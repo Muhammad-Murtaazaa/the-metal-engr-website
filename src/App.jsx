@@ -4,6 +4,7 @@ import {
   ArrowDown,
   ArrowUp,
   ArrowUpRight,
+  Cylinder,
   Factory,
   Gauge,
   HardHat,
@@ -48,8 +49,17 @@ const routes = {
     statement: <>Make room<br />to grow.</>,
     copy: 'Smart structural work gives your people and equipment the room to perform.',
   },
+  tanks: {
+    eyebrow: '07 / Storage tanks',
+    title: <>Engineered for<br />containment.</>,
+    image: 'storage-tanks.webp',
+    imageAlt: 'Industrial stainless steel storage tanks and pressure vessels fabrication',
+    subhead: 'Certified containment',
+    statement: <>Secure storage.<br />Zero compromise.</>,
+    copy: 'Custom industrial tanks, chemical storage vessels, silos, and pressure vessels engineered for safety, structural integrity, and longevity.',
+  },
   installation: {
-    eyebrow: '07 / Site installation',
+    eyebrow: '08 / Site installation',
     title: <>Ready for the<br />real world.</>,
     image: 'site-installation.webp',
     imageAlt: 'Turnkey industrial equipment and piping installation',
@@ -58,7 +68,7 @@ const routes = {
     copy: 'Measured installation and modifications carried out with care around active production environments.',
   },
   maintenance: {
-    eyebrow: '08 / Maintenance',
+    eyebrow: '09 / Maintenance',
     title: <>Keep the line<br />alive.</>,
     image: 'equipment-maintenance.webp',
     imageAlt: 'Industrial equipment maintenance, gearbox servicing, and mechanical repair',
@@ -78,19 +88,22 @@ const routes = {
   process: { eyebrow: '11 / Approach', title: <>Clear from<br />the outset.</> },
   quality: { eyebrow: '12 / Quality', title: <>Built with<br />discipline.</> },
 };
+routes['storage-tanks'] = routes.tanks;
 
 const services = [
   ['01', 'Custom fabrication', 'Made-to-measure components, assemblies, and metalwork.', 'fabrication'],
   ['02', 'Conveyor systems', 'Movement designed around your product and your process.', 'conveyors'],
   ['03', 'Structural steel', 'Strong frameworks, platforms, racks, and access solutions.', 'structural'],
-  ['04', 'Site installation', 'Measured installation and modifications around live operations.', 'installation'],
-  ['05', 'Maintenance', 'Repairs and upgrades that extend the life of your equipment.', 'maintenance'],
+  ['04', 'Storage tanks', 'Custom process vessels, silos, and certified containment systems.', 'tanks'],
+  ['05', 'Site installation', 'Measured installation and modifications around live operations.', 'installation'],
+  ['06', 'Maintenance', 'Repairs and upgrades that extend the life of your equipment.', 'maintenance'],
 ];
 
 const serviceIcons = {
   fabrication: Ruler,
   conveyors: Layers3,
   structural: Factory,
+  tanks: Cylinder,
   installation: HardHat,
   maintenance: Wrench,
 };
@@ -100,7 +113,6 @@ const logos = [
   ['nishat chunian logo.png', 'Nishat Chunian'],
   ['izhar logo.png', 'Izhar'],
   ['jf logo.png', 'JF'],
-  ['metal engineering logo.png', 'Metal Engineering'],
 ];
 
 function getPageList(eyebrow = '') {
@@ -112,6 +124,9 @@ function getPageList(eyebrow = '') {
   }
   if (eyebrow.includes('Structural')) {
     return ['Mezzanines & platforms', 'Equipment supports', 'Racks & storage', 'Stairs & walkways'];
+  }
+  if (eyebrow.includes('Storage') || eyebrow.includes('tanks')) {
+    return ['Process vessels & silos', 'Stainless & carbon steel tanks', 'Agitators & jacketed tanks', 'Pressure vessels & manifolding'];
   }
   if (eyebrow.includes('installation')) {
     return ['Turnkey mechanical erection', 'Alignment & leveling', 'Piping & chute integration', 'Commissioning & testing'];
@@ -392,19 +407,89 @@ function BackToTop() {
   );
 }
 
+function LinkedInIcon({ size = 20, className = '' }) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 448 448"
+      fill="currentColor"
+      className={className}
+      aria-hidden="true"
+    >
+      <path d="M416 0H31.9C14.3 0 0 14.5 0 32.3v383.4C0 433.5 14.3 448 31.9 448H416c17.6 0 32-14.5 32-32.3V32.3c0-17.8-14.4-32.3-32-32.3zM135.4 384H69V170.2h66.5V384zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 64 102.2 64c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V280c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V384h-66.4V170.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V384z" />
+    </svg>
+  );
+}
+
+function FacebookIcon({ size = 20, className = '' }) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      className={className}
+      aria-hidden="true"
+    >
+      <path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95C18.05 21.45 22 17.19 22 12Z" />
+    </svg>
+  );
+}
+
 function Footer() {
   return (
     <>
       <footer className="site-footer">
         <div className="footer-top">
-          <Logo />
-          <p>Precision-built solutions for the environments that keep industry moving.</p>
-          <ArrowLink href="#contact">Talk to our team</ArrowLink>
+          <div className="footer-brand-wrap">
+            <Logo />
+          </div>
+          <p className="footer-tagline">
+            Precision-built solutions for the environments that keep industry moving.
+          </p>
+          <div className="footer-actions">
+            <div className="footer-socials" aria-label="Social media channels">
+              <a
+                href="https://www.linkedin.com/in/the-metal-engineering-7a6a0143b"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="social-icon-btn"
+                aria-label="Metal Engineering on LinkedIn"
+                title="LinkedIn"
+              >
+                <LinkedInIcon size={20} />
+              </a>
+              <a
+                href="https://web.facebook.com/profile.php?id=61594782787657&sk=about"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="social-icon-btn"
+                aria-label="Metal Engineering on Facebook"
+                title="Facebook"
+              >
+                <FacebookIcon size={20} />
+              </a>
+            </div>
+            <ArrowLink href="#contact">Talk to our team</ArrowLink>
+          </div>
         </div>
         <div className="footer-bottom">
-          <span>© 2026 Metal Engineering</span>
-          <span>Fabrication · Automation · Site Solutions</span>
-          <a href="#contact">Lahore, Pakistan</a>
+          <span>&copy; {new Date().getFullYear()} Metal Engineering</span>
+          <span className="footer-specs">Fabrication &bull; Automation &bull; Site Solutions</span>
+          <a href="#contact" className="footer-location">Lahore, Pakistan</a>
+          <span className="footer-credit">
+            Powered by{' '}
+            <a
+              href="https://omnysync.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="omnysync-link"
+              title="OMNYSYNC - Technology & Digital Systems"
+            >
+              OMNYSYNC
+            </a>
+          </span>
         </div>
       </footer>
       <BackToTop />
@@ -426,6 +511,8 @@ function Home() {
           poster="/img1-jpg.jpg"
           aria-hidden="true"
         >
+          <source src="/hero-video.mp4" type="video/mp4" />
+          <source src="/Hero-video.mp4" type="video/mp4" />
           <source src="/hero video.mp4" type="video/mp4" />
         </video>
         <div className="hero-shade" aria-hidden="true" />
@@ -917,6 +1004,8 @@ function App() {
     'fabrication',
     'conveyors',
     'structural',
+    'tanks',
+    'storage-tanks',
     'installation',
     'maintenance',
   ].includes(route);
