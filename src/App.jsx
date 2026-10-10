@@ -159,7 +159,7 @@ function useRoute() {
   }, []);
 
   useEffect(() => {
-    const serviceRoutes = ['fabrication', 'conveyors', 'structural', 'installation', 'maintenance'];
+    const serviceRoutes = ['fabrication', 'conveyors', 'structural', 'tanks', 'storage-tanks', 'installation', 'maintenance'];
     if (serviceRoutes.includes(route)) {
       window.scrollTo({ top: 0, behavior: 'instant' });
     } else if (route === 'home' || !route) {
